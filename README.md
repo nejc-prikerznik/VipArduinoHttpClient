@@ -27,3 +27,6 @@ Because it expects an object of type Client, you can use it with any of the netw
 
 See the examples for more detail on how the library is used.
 
+## my changes
+added another parameter for begin in websocketclient, to allow custom header
+
