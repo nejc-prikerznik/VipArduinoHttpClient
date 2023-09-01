@@ -26,8 +26,8 @@ public:
       @param aURLPath     Path to use in request (optional, "/" is used by default)
       @return 0 if successful, else error
      */
-    int begin(const char* aPath = "/");
-    int begin(const String& aPath);
+    int begin(const char* aPath = "/",const char* header= "/");
+    int begin(const String& aPath,const String& header);
 
     /** Begin to send a message of type (TYPE_TEXT or TYPE_BINARY)
         Use the write or Stream API's to set message content, followed by endMessage
