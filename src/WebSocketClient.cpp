@@ -26,7 +26,7 @@ WebSocketClient::WebSocketClient(Client& aClient, const IPAddress& aServerAddres
 {
 }
 
-int WebSocketClient::begin(const char* aPath)
+int WebSocketClient::begin(const char* aPath,const char* header)
 {
     // start the GET request
     beginRequest();
@@ -51,6 +51,10 @@ int WebSocketClient::begin(const char* aPath)
         sendHeader("Connection", "Upgrade");
         sendHeader("Sec-WebSocket-Key", base64RandomKey);
         sendHeader("Sec-WebSocket-Version", "13");
+        if(header!="/")
+        {
+            sendHeader(header);
+        }
         endRequest();
 
         status = responseStatusCode();
@@ -66,10 +70,9 @@ int WebSocketClient::begin(const char* aPath)
     // status code of 101 means success
     return (status == 101) ? 0 : status;
 }
-
-int WebSocketClient::begin(const String& aPath)
+int WebSocketClient::begin(const String& aPath,const String& header)
 {
-    return begin(aPath.c_str());
+    return begin(aPath.c_str(),header.c_str());
 }
 
 int WebSocketClient::beginMessage(int aType)
